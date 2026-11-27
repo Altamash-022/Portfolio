@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sk Altamash Ali — AI/ML &amp; Full Stack Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="tailwind-config.js"></script>
+  <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 transition-colors duration-300 antialiased selection:bg-indigo-500/30">
+
+  <!-- Interactive Cursor Spotlight -->
+  <div id="spotlight" class="pointer-events-none fixed inset-0 z-0 spotlight-bg transition-opacity duration-300"></div>
+
+  <!-- Sticky Navigation -->
+  <header class="sticky top-0 z-40 border-b border-zinc-200/80 dark:border-zinc-800/80 bg-white/80 dark:bg-zinc-950/80 glass">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+      <a href="#home" class="flex items-center gap-2.5 font-bold tracking-tight text-lg shrink-0">
+        <span id="navMonogram" class="w-9 h-9 rounded-xl bg-indigo-600 text-white flex items-center justify-center text-sm font-bold shadow-md shadow-indigo-500/20">SA</span>
+        <span id="navName">Sk Altamash Ali</span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-zinc-600 dark:text-zinc-400">
+        <a href="#home" class="nav-link hover:text-zinc-950 dark:hover:text-white transition-colors">Home</a>
+        <a href="#projects" class="nav-link hover:text-zinc-950 dark:hover:text-white transition-colors">Projects</a>
+        <a href="#skills" class="nav-link hover:text-zinc-950 dark:hover:text-white transition-colors">Skills</a>
+        <a href="#certificates" class="nav-link hover:text-zinc-950 dark:hover:text-white transition-colors">Certificates</a>
+        <a href="#journey" class="nav-link hover:text-zinc-950 dark:hover:text-white transition-colors">Experience</a>
+        <a href="#contact" class="nav-link hover:text-zinc-950 dark:hover:text-white transition-colors">Contact</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <button id="cmdBtn" type="button" title="Quick Actions (Ctrl+K)" class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-zinc-200 dark:border-zinc-800 text-xs text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors">
+          <i data-lucide="command" class="w-3.5 h-3.5"></i>
+          <span>Quick Menu</span>
+          <kbd class="px-1.5 py-0.5 text-[10px] rounded bg-zinc-100 dark:bg-zinc-800 font-mono">⌘K</kbd>
+        </button>
+        <button id="customizeBtn" type="button" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 text-xs font-medium transition-colors">
+          <i data-lucide="sliders-horizontal" class="w-3.5 h-3.5"></i>
+          <span class="hidden sm:inline">Customize</span>
+        </button>
+        <button id="themeToggle" type="button" aria-label="Toggle theme" class="p-2 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors">
+          <i data-lucide="sun" class="w-4 h-4 hidden dark:block text-amber-400"></i>
+          <i data-lucide="moon" class="w-4 h-4 block dark:hidden text-indigo-600"></i>
+        </button>
+        <button id="mobileMenuBtn" type="button" aria-label="Open navigation menu" class="md:hidden p-2 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900">
+          <i data-lucide="menu" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu" class="hidden md:hidden border-t border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 px-4 py-3 space-y-1">
+      <a href="#home" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-900">Home</a>
+      <a href="#projects" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-900">Projects</a>
+      <a href="#skills" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-900">Skills</a>
+      <a href="#certificates" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-900">Certificates</a>
+      <a href="#journey" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-900">Experience</a>
+      <a href="#contact" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-900">Contact</a>
+    </div>
+  </header>
+
+  <main class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
+
+    <!-- Hero Section -->
+    <section id="home" class="py-14 sm:py-20 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+      <div class="lg:col-span-7 space-y-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 text-xs font-medium">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span id="heroAvailability">Seeking AI/ML Engineer &amp; Full Stack Engineer Internships</span>
+        </div>
+
+        <div class="space-y-3">
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+            Hi, I'm <span id="heroName" class="bg-gradient-to-r from-indigo-500 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">Sk Altamash Ali</span>
+          </h1>
+          <p class="text-xl sm:text-2xl font-semibold text-zinc-700 dark:text-zinc-300 min-h-[2rem]">
+            <span id="heroRole">AI/ML Intern | Full Stack Developer | UI Designer</span>
+            <span id="typewriterWrap" class="hidden sm:inline text-indigo-500 dark:text-indigo-400"> • <span id="typewriterText"></span><span class="caret-blink">|</span></span>
+          </p>
+          <p id="heroBio" class="text-base text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
+            BCA student at The Neotia University with hands-on experience building end-to-end web applications and machine learning pipelines. Proficient in Python, Django, REST APIs, JavaScript, and Scikit-learn, with practical skills in data preprocessing, predictive modeling, responsive UI development, and cloud deployment.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-3 pt-1">
+          <a href="#projects" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm shadow-lg shadow-indigo-500/25 transition-all hover:-translate-y-0.5">
+            <span>Explore Projects</span>
+            <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
+          </a>
+          <button id="openResumeBtn" type="button" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 hover:bg-zinc-100 dark:hover:bg-zinc-800 font-semibold text-sm transition-all">
+            <i data-lucide="file-text" class="w-4 h-4"></i>
+            <span>Interactive Resume</span>
+          </button>
+          <button id="copyEmailBtn" type="button" class="inline-flex items-center gap-2 px-4 py-3 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:border-indigo-500/50 text-sm font-medium text-zinc-700 dark:text-zinc-300 transition-colors">
+            <i data-lucide="copy" class="w-4 h-4"></i>
+            <span id="heroEmailText">skaltamashali970@gmail.com</span>
+          </button>
+        </div>
+
+        <!-- Social & Quick Links -->
+        <div class="flex flex-wrap items-center gap-3 pt-2">
+          <a href="https://github.com/Altamash-022" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-zinc-200/70 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-xs font-medium hover:border-indigo-500 transition-colors">
+            <i data-lucide="github" class="w-3.5 h-3.5"></i>
+            <span>GitHub</span>
+          </a>
+          <a href="https://www.linkedin.com/in/sk-altamash-ali-a5078a34b" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-zinc-200/70 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-xs font-medium hover:border-indigo-500 transition-colors">
+            <i data-lucide="linkedin" class="w-3.5 h-3.5 text-sky-500"></i>
+            <span>LinkedIn</span>
+          </a>
+          <a href="https://altamash022.github.io/My_Portfolio" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-zinc-200/70 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-xs font-medium hover:border-indigo-500 transition-colors">
+            <i data-lucide="globe" class="w-3.5 h-3.5 text-emerald-500"></i>
+            <span>GitHub Pages</span>
+          </a>
+          <span class="inline-flex items-center gap-1.5 text-xs text-zinc-500 dark:text-zinc-400 ml-1">
+            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-indigo-500"></i>
+            <span id="heroLocation">Contai, West Bengal 721401, India</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Stylish Interactive Profile Card with Real Photo -->
+      <div class="lg:col-span-5">
+        <div class="relative rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/70 glass p-6 sm:p-8 shadow-2xl float-slow">
+          <div class="flex items-center justify-between mb-6 gap-3">
+            <div class="flex items-center gap-4 min-w-0">
+              <img src="data:image/jpeg;base64,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" alt="Sk Altamash Ali" class="w-16 h-16 rounded-2xl object-cover border-2 border-indigo-500/40 shadow-lg shrink-0" />
+              <div class="min-w-0">
+                <h2 id="cardName" class="font-bold text-lg truncate">Sk Altamash Ali</h2>
+                <p id="cardHandle" class="text-xs text-zinc-500 dark:text-zinc-400 truncate">skaltamashali970@gmail.com</p>
+                <p class="text-[11px] text-indigo-600 dark:text-indigo-400 font-medium mt-0.5">BCA • The Neotia University</p>
+              </div>
+            </div>
+            <span class="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20 shrink-0">
+              4 Internships
+            </span>
+          </div>
+
+          <div class="grid grid-cols-3 gap-3 mb-6">
+            <div class="p-3 rounded-2xl bg-zinc-100 dark:bg-zinc-800/70 text-center">
+              <div id="statProjects" class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">4</div>
+              <div class="text-[11px] text-zinc-500 dark:text-zinc-400 mt-0.5">Key Projects</div>
+            </div>
+            <div class="p-3 rounded-2xl bg-zinc-100 dark:bg-zinc-800/70 text-center">
+              <div id="statLikes" class="text-2xl font-bold text-cyan-600 dark:text-cyan-400">51</div>
+              <div class="text-[11px] text-zinc-500 dark:text-zinc-400 mt-0.5">Appreciations</div>
+            </div>
+            <div class="p-3 rounded-2xl bg-zinc-100 dark:bg-zinc-800/70 text-center">
+              <div class="text-2xl font-bold text-emerald-600 dark:text-emerald-400">6</div>
+              <div class="text-[11px] text-zinc-500 dark:text-zinc-400 mt-0.5">Certifications</div>
+            </div>
+          </div>
+
+          <div class="space-y-2.5 text-xs">
+            <div class="flex items-center justify-between p-2.5 rounded-xl bg-zinc-50 dark:bg-zinc-950/60 border border-zinc-200/60 dark:border-zinc-800">
+              <span class="text-zinc-500 dark:text-zinc-400">Current Role</span>
+              <span class="font-semibold">AI/ML Intern @ Euphoria Gen X</span>
+            </div>
+            <div class="flex items-center justify-between p-2.5 rounded-xl bg-zinc-50 dark:bg-zinc-950/60 border border-zinc-200/60 dark:border-zinc-800">
+              <span class="text-zinc-500 dark:text-zinc-400">Phone</span>
+              <span class="font-mono font-semibold">+91 8609287613</span>
+            </div>
+            <div class="flex items-center justify-between p-2.5 rounded-xl bg-zinc-50 dark:bg-zinc-950/60 border border-zinc-200/60 dark:border-zinc-800">
+              <span class="text-zinc-500 dark:text-zinc-400">Local Time (IST)</span>
+              <span id="liveClock" class="font-mono font-semibold">--:--:--</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 border-t border-zinc-200 dark:border-zinc-800/80 reveal">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+        <div>
+          <span class="text-xs font-semibold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">Selected Work</span>
+          <h2 class="text-3xl font-bold tracking-tight mt-1">Key Projects</h2>
+          <p class="text-sm text-zinc-600 dark:text-zinc-400 mt-1">Filter by domain, search by tech stack, inspect case studies, or add a new project live.</p>
+        </div>
+        <button id="openAddProjectBtn" type="button" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 text-xs font-semibold hover:opacity-90 transition-opacity self-start md:self-auto">
+          <i data-lucide="plus" class="w-4 h-4"></i>
+          <span>Add Project</span>
+        </button>
+      </div>
+
+      <!-- Filter & Search Toolbar -->
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 mb-8">
+        <div id="categoryFilters" class="flex flex-wrap gap-2">
+          <button type="button" data-cat="All" class="filter-btn px-3.5 py-1.5 rounded-full text-xs font-semibold bg-indigo-600 text-white transition-colors">All</button>
+          <button type="button" data-cat="AI & Data" class="filter-btn px-3.5 py-1.5 rounded-full text-xs font-semibold bg-zinc-200/70 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors">AI &amp; Data</button>
+          <button type="button" data-cat="Web Apps" class="filter-btn px-3.5 py-1.5 rounded-full text-xs font-semibold bg-zinc-200/70 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors">Web Apps</button>
+          <button type="button" data-cat="UI/UX Design" class="filter-btn px-3.5 py-1.5 rounded-full text-xs font-semibold bg-zinc-200/70 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors">UI/UX Design</button>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <div class="relative flex-1 sm:w-56">
+            <i data-lucide="search" class="w-4 h-4 text-zinc-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
+            <input id="projectSearch" type="text" placeholder="Search Django, Streamlit, Python..." class="w-full pl-9 pr-3 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+          </div>
+          <button id="toggleViewBtn" type="button" title="Toggle Grid/List View" class="p-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:bg-zinc-100 dark:hover:bg-zinc-800">
+            <i data-lucide="layout-grid" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Projects Container -->
+      <div id="projectsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+      <div id="emptyProjectsState" class="hidden text-center py-12 rounded-2xl border border-dashed border-zinc-300 dark:border-zinc-800">
+        <p class="text-sm text-zinc-500 dark:text-zinc-400">No projects match your current filter or search.</p>
+        <button id="resetFiltersBtn" type="button" class="mt-3 px-4 py-2 rounded-lg bg-indigo-600 text-white text-xs font-semibold">Reset Filters</button>
+      </div>
+    </section>
+
+    <!-- Skills & Interactive Chart Section -->
+    <section id="skills" class="py-16 border-t border-zinc-200 dark:border-zinc-800/80 reveal">
+      <div class="mb-8">
+        <span class="text-xs font-semibold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">Capabilities</span>
+        <h2 class="text-3xl font-bold tracking-tight mt-1">Technical Skills &amp; Stack</h2>
+        <p class="text-sm text-zinc-600 dark:text-zinc-400 mt-1">Switch domains to inspect proficiency breakdowns and live radar metrics.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div class="lg:col-span-6 space-y-5">
+          <div id="skillTabs" class="inline-flex flex-wrap p-1 rounded-xl bg-zinc-200/70 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
+            <button type="button" data-skill-tab="AI / ML & Data" class="skill-tab-btn px-3.5 py-2 rounded-lg text-xs font-semibold bg-white dark:bg-zinc-800 shadow-sm transition-all">AI / ML &amp; Data</button>
+            <button type="button" data-skill-tab="Full Stack & Web" class="skill-tab-btn px-3.5 py-2 rounded-lg text-xs font-semibold text-zinc-600 dark:text-zinc-400 transition-all">Full Stack &amp; Web</button>
+            <button type="button" data-skill-tab="Cloud, DB & Core" class="skill-tab-btn px-3.5 py-2 rounded-lg text-xs font-semibold text-zinc-600 dark:text-zinc-400 transition-all">Cloud, DB &amp; Core</button>
+          </div>
+
+          <div id="skillBarsContainer" class="space-y-3.5"></div>
+        </div>
+
+        <div class="lg:col-span-6 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-sm font-semibold">Skill Proficiency Radar</h3>
+            <span id="chartDomainBadge" class="text-xs px-2.5 py-1 rounded-full bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-medium">AI / ML &amp; Data</span>
+          </div>
+          <div class="relative h-72">
+            <canvas id="skillsChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section id="certificates" class="py-16 border-t border-zinc-200 dark:border-zinc-800/80 reveal">
+      <div class="max-w-3xl mb-8">
+        <span class="text-xs font-semibold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">Achievements</span>
+        <h2 class="text-3xl font-bold tracking-tight mt-1">Certificates &amp; Recognition</h2>
+        <p class="text-sm text-zinc-600 dark:text-zinc-400 mt-3 leading-relaxed">
+          These certifications highlight my continuous learning across software development, cloud computing, data analytics, and professional skills.
+          Each credential represents hands-on training, practical application, and a commitment to building industry-ready technical knowledge.
+          Click any certificate to view a larger, high-quality preview.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <button type="button" class="certificate-card group text-left rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 overflow-hidden transition-all hover:-translate-y-1 hover:border-indigo-500/50 hover:shadow-xl" data-certificate="certificates/Advance_Java_and_Oracle.jpg" data-title="Data Modeling using Advance Java and Oracle">
+          <img src="certificates/Advance_Java_and_Oracle.jpg" alt="Advance Java and Oracle certificate" class="w-full aspect-[4/3] object-cover object-top bg-zinc-100 dark:bg-zinc-800" />
+          <div class="p-4"><h3 class="font-semibold text-sm">Advance Java &amp; Oracle</h3><p class="text-xs text-zinc-500 mt-1">AILABS · 2025</p></div>
+        </button>
+        <button type="button" class="certificate-card group text-left rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 overflow-hidden transition-all hover:-translate-y-1 hover:border-indigo-500/50 hover:shadow-xl" data-certificate="certificates/AWS_Foundations_and_Practical_Applications.jpg" data-title="AWS Foundations and Practical Applications">
+          <img src="certificates/AWS_Foundations_and_Practical_Applications.jpg" alt="AWS Foundations and Practical Applications certificate" class="w-full aspect-[4/3] object-cover object-top bg-zinc-100 dark:bg-zinc-800" />
+          <div class="p-4"><h3 class="font-semibold text-sm">AWS Foundations &amp; Applications</h3><p class="text-xs text-zinc-500 mt-1">DataSpace Academy · 2024</p></div>
+        </button>
+        <button type="button" class="certificate-card group text-left rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 overflow-hidden transition-all hover:-translate-y-1 hover:border-indigo-500/50 hover:shadow-xl" data-certificate="certificates/Business_Analytics_GUVI.jpg" data-title="Breaking Into the World of Business Analytics">
+          <img src="certificates/Business_Analytics_GUVI.jpg" alt="GUVI Business Analytics webinar certificate" class="w-full aspect-[4/3] object-cover object-top bg-zinc-100 dark:bg-zinc-800" />
+          <div class="p-4"><h3 class="font-semibold text-sm">Business Analytics Webinar</h3><p class="text-xs text-zinc-500 mt-1">GUVI &amp; HCL · 2025</p></div>
+        </button>
+        <button type="button" class="certificate-card group text-left rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 overflow-hidden transition-all hover:-translate-y-1 hover:border-indigo-500/50 hover:shadow-xl" data-certificate="certificates/Communication_Skills_IBM.jpg" data-title="Introduction to Interpersonal Skills">
+          <img src="certificates/Communication_Skills_IBM.jpg" alt="IBM Communication Skills certificate" class="w-full aspect-[4/3] object-cover object-top bg-zinc-100 dark:bg-zinc-800" />
+          <div class="p-4"><h3 class="font-semibold text-sm">Introduction to Interpersonal Skills</h3><p class="text-xs text-zinc-500 mt-1">IBM SkillsBuild · 2025</p></div>
+        </button>
+        <button type="button" class="certificate-card group text-left rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 overflow-hidden transition-all hover:-translate-y-1 hover:border-indigo-500/50 hover:shadow-xl" data-certificate="certificates/Git_and_GitHub_WsCube.jpg" data-title="Master Git and GitHub in 90 Minutes">
+          <img src="certificates/Git_and_GitHub_WsCube.jpg" alt="Git and GitHub masterclass certificate" class="w-full aspect-[4/3] object-cover object-top bg-zinc-100 dark:bg-zinc-800" />
+          <div class="p-4"><h3 class="font-semibold text-sm">Git &amp; GitHub Masterclass</h3><p class="text-xs text-zinc-500 mt-1">WsCube Tech · 2025</p></div>
+        </button>
+        <button type="button" class="certificate-card group text-left rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 overflow-hidden transition-all hover:-translate-y-1 hover:border-indigo-500/50 hover:shadow-xl" data-certificate="certificates/Internet_of_Things_Infosys.jpg" data-title="Internet of Things Program Completion">
+          <img src="certificates/Internet_of_Things_Infosys.jpg" alt="Internet of Things certificate" class="w-full aspect-[4/3] object-cover object-top bg-zinc-100 dark:bg-zinc-800" />
+          <div class="p-4"><h3 class="font-semibold text-sm">Internet of Things</h3><p class="text-xs text-zinc-500 mt-1">Infosys Springboard · 2025</p></div>
+        </button>
+        <button type="button" class="certificate-card group text-left rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 overflow-hidden transition-all hover:-translate-y-1 hover:border-indigo-500/50 hover:shadow-xl" data-certificate="certificates/Power_BI_Data_Visualization.jpg" data-title="Impactful Real-world Environmental Data Visualizations using Power BI">
+          <img src="certificates/Power_BI_Data_Visualization.jpg" alt="Power BI data visualization certificate" class="w-full aspect-[4/3] object-cover object-top bg-zinc-100 dark:bg-zinc-800" />
+          <div class="p-4"><h3 class="font-semibold text-sm">Power BI Data Visualization</h3><p class="text-xs text-zinc-500 mt-1">The Neotia University · 2025</p></div>
+        </button>
+        <button type="button" class="certificate-card group text-left rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 overflow-hidden transition-all hover:-translate-y-1 hover:border-indigo-500/50 hover:shadow-xl" data-certificate="certificates/Python_Django_MongoDB.jpg" data-title="AI-driven Data Modeling using Python, Django and MongoDB">
+          <img src="certificates/Python_Django_MongoDB.jpg" alt="Python Django MongoDB workshop certificate" class="w-full aspect-[4/3] object-cover object-top bg-zinc-100 dark:bg-zinc-800" />
+          <div class="p-4"><h3 class="font-semibold text-sm">Python, Django &amp; MongoDB</h3><p class="text-xs text-zinc-500 mt-1">Kognitive Emerging · 2026</p></div>
+        </button>
+        <button type="button" class="certificate-card group text-left rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 overflow-hidden transition-all hover:-translate-y-1 hover:border-indigo-500/50 hover:shadow-xl" data-certificate="certificates/Software_Engineering_and_Agile.jpg" data-title="Software Engineering and Agile Software Development">
+          <img src="certificates/Software_Engineering_and_Agile.jpg" alt="Software Engineering and Agile certificate" class="w-full aspect-[4/3] object-cover object-top bg-zinc-100 dark:bg-zinc-800" />
+          <div class="p-4"><h3 class="font-semibold text-sm">Software Engineering &amp; Agile</h3><p class="text-xs text-zinc-500 mt-1">Infosys Springboard · 2026</p></div>
+        </button>
+        <button type="button" class="certificate-card group text-left rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 overflow-hidden transition-all hover:-translate-y-1 hover:border-indigo-500/50 hover:shadow-xl" data-certificate="certificates/Swanirvar_caritable_trust.jpg" data-title="Diploma in Information Technology">
+          <img src="certificates/Swanirvar_caritable_trust.jpg" alt="Diploma in Information Technology certificate" class="w-full aspect-[4/3] object-cover object-top bg-zinc-100 dark:bg-zinc-800" />
+          <div class="p-4"><h3 class="font-semibold text-sm">Diploma in Information Technology</h3><p class="text-xs text-zinc-500 mt-1">Swanirvar Charitable Trust · 2023</p></div>
+        </button>
+        <button type="button" class="certificate-card group text-left rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 overflow-hidden transition-all hover:-translate-y-1 hover:border-indigo-500/50 hover:shadow-xl" data-certificate="certificates/Viksit_Bharat_Young_Leaders.jpg" data-title="Viksit Bharat Young Leaders Dialogue 2026">
+          <img src="certificates/Viksit_Bharat_Young_Leaders.jpg" alt="Viksit Bharat Young Leaders Dialogue certificate" class="w-full aspect-[4/3] object-cover object-top bg-zinc-100 dark:bg-zinc-800" />
+          <div class="p-4"><h3 class="font-semibold text-sm">Viksit Bharat Young Leaders Dialogue</h3><p class="text-xs text-zinc-500 mt-1">Ministry of Youth Affairs · 2025</p></div>
+        </button>
+      </div>
+    </section>
+
+    <!-- Experience, Education & Certifications Section -->
+    <section id="journey" class="py-16 border-t border-zinc-200 dark:border-zinc-800/80 reveal">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+        <div>
+          <span class="text-xs font-semibold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">Background</span>
+          <h2 class="text-3xl font-bold tracking-tight mt-1">Experience, Education &amp; Certifications</h2>
+        </div>
+        <div id="journeyTabs" class="inline-flex p-1 rounded-xl bg-zinc-200/70 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 self-start">
+          <button type="button" data-journey="internships" class="journey-tab-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-zinc-800 shadow-sm transition-all">Internships (4)</button>
+          <button type="button" data-journey="education" class="journey-tab-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold text-zinc-600 dark:text-zinc-400 transition-all">Education (3)</button>
+          <button type="button" data-journey="certs" class="journey-tab-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold text-zinc-600 dark:text-zinc-400 transition-all">Certifications (6)</button>
+        </div>
+      </div>
+
+      <!-- Internships Panel -->
+      <div id="panel-internships" class="journey-panel space-y-4">
+        <div class="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+          <div class="flex items-start gap-4">
+            <div class="w-11 h-11 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0">
+              <i data-lucide="cpu" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-base">AI/ML Intern — Euphoria Gen X, Kolkata</h3>
+              <p class="text-sm text-zinc-600 dark:text-zinc-400 mt-1">Implementing supervised and unsupervised machine learning concepts, focusing on classification, regression, and predictive modeling workflows.</p>
+            </div>
+          </div>
+          <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 shrink-0 self-start">Sep 2026 – Present</span>
+        </div>
+
+        <div class="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+          <div class="flex items-start gap-4">
+            <div class="w-11 h-11 rounded-xl bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 flex items-center justify-center shrink-0">
+              <i data-lucide="layout" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-base">Web Designer Intern — Soft Nexis Technologies, Ghaziabad</h3>
+              <p class="text-sm text-zinc-600 dark:text-zinc-400 mt-1">Designed responsive desktop and mobile layouts and website mockups using HTML and CSS aligned with usability principles and client branding.</p>
+            </div>
+          </div>
+          <span class="px-3 py-1 rounded-full text-xs font-semibold bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 shrink-0 self-start">Jun 2026 – Aug 2026</span>
+        </div>
+
+        <div class="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+          <div class="flex items-start gap-4">
+            <div class="w-11 h-11 rounded-xl bg-rose-500/10 text-rose-600 dark:text-rose-400 flex items-center justify-center shrink-0">
+              <i data-lucide="shield-check" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-base">Cyber Security Intern — WEBEL, Kolkata</h3>
+              <p class="text-sm text-zinc-600 dark:text-zinc-400 mt-1">Analyzed network security and threat awareness; completed hands-on exercises to identify common vulnerabilities and review mitigation approaches.</p>
+            </div>
+          </div>
+          <span class="px-3 py-1 rounded-full text-xs font-semibold bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 shrink-0 self-start">Jun 2025 – Jul 2025</span>
+        </div>
+
+        <div class="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+          <div class="flex items-start gap-4">
+            <div class="w-11 h-11 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0">
+              <i data-lucide="megaphone" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-base">Digital Marketing Intern — DataSpace Academy, Kolkata</h3>
+              <p class="text-sm text-zinc-600 dark:text-zinc-400 mt-1">Applied SEO, social media, and campaign fundamentals while assisting with digital marketing tasks and content posting schedules.</p>
+            </div>
+          </div>
+          <span class="px-3 py-1 rounded-full text-xs font-semibold bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 shrink-0 self-start">Jun 2024 – Jul 2024</span>
+        </div>
+      </div>
+
+      <!-- Education Panel -->
+      <div id="panel-education" class="journey-panel hidden space-y-4">
+        <div class="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="flex items-start gap-4">
+            <div class="w-11 h-11 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0">
+              <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-base">Bachelor of Computer Applications (BCA)</h3>
+              <p class="text-sm text-zinc-600 dark:text-zinc-400">The Neotia University, Sarisha</p>
+            </div>
+          </div>
+          <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 self-start sm:self-center">Aug 2023 – Present</span>
+        </div>
+
+        <div class="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="flex items-start gap-4">
+            <div class="w-11 h-11 rounded-xl bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 flex items-center justify-center shrink-0">
+              <i data-lucide="book-open" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-base">Class XII (WBCHSE) — 74.00%</h3>
+              <p class="text-sm text-zinc-600 dark:text-zinc-400">Kishore Nagar Sachindra Siksha Sadan, Contai</p>
+            </div>
+          </div>
+          <span class="px-3 py-1 rounded-full text-xs font-semibold bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 self-start sm:self-center">2023</span>
+        </div>
+
+        <div class="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="flex items-start gap-4">
+            <div class="w-11 h-11 rounded-xl bg-zinc-500/10 text-zinc-600 dark:text-zinc-400 flex items-center justify-center shrink-0">
+              <i data-lucide="award" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-base">Class X (WBBSE) — 76.43%</h3>
+              <p class="text-sm text-zinc-600 dark:text-zinc-400">Kishore Nagar Sachindra Siksha Sadan, Contai</p>
+            </div>
+          </div>
+          <span class="px-3 py-1 rounded-full text-xs font-semibold bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 self-start sm:self-center">2021</span>
+        </div>
+      </div>
+
+      <!-- Certifications Panel -->
+      <div id="panel-certs" class="journey-panel hidden space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 flex items-start gap-3">
+            <i data-lucide="badge-check" class="w-5 h-5 text-indigo-500 shrink-0 mt-0.5"></i>
+            <div>
+              <h4 class="font-semibold text-sm">Data Modeling for AI-driven Applications (14 hrs)</h4>
+              <p class="text-xs text-zinc-500 mt-0.5">Kognitive Emerging Software Service</p>
+            </div>
+          </div>
+          <div class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 flex items-start gap-3">
+            <i data-lucide="badge-check" class="w-5 h-5 text-cyan-500 shrink-0 mt-0.5"></i>
+            <div>
+              <h4 class="font-semibold text-sm">AWS Hands-on Training &amp; Foundation Workshop (30 hrs)</h4>
+              <p class="text-xs text-zinc-500 mt-0.5">DataSpace Academy</p>
+            </div>
+          </div>
+          <div class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 flex items-start gap-3">
+            <i data-lucide="badge-check" class="w-5 h-5 text-emerald-500 shrink-0 mt-0.5"></i>
+            <div>
+              <h4 class="font-semibold text-sm">Software Engineering &amp; Agile Development &amp; IoT Program</h4>
+              <p class="text-xs text-zinc-500 mt-0.5">Infosys Springboard</p>
+            </div>
+          </div>
+          <div class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 flex items-start gap-3">
+            <i data-lucide="badge-check" class="w-5 h-5 text-amber-500 shrink-0 mt-0.5"></i>
+            <div>
+              <h4 class="font-semibold text-sm">Power BI Workshop (18 hrs)</h4>
+              <p class="text-xs text-zinc-500 mt-0.5">DataSpace Academy</p>
+            </div>
+          </div>
+          <div class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 flex items-start gap-3">
+            <i data-lucide="badge-check" class="w-5 h-5 text-indigo-500 shrink-0 mt-0.5"></i>
+            <div>
+              <h4 class="font-semibold text-sm">Operating Systems Basics</h4>
+              <p class="text-xs text-zinc-500 mt-0.5">Cisco Academy</p>
+            </div>
+          </div>
+          <div class="p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 flex items-start gap-3">
+            <i data-lucide="badge-check" class="w-5 h-5 text-cyan-500 shrink-0 mt-0.5"></i>
+            <div>
+              <h4 class="font-semibold text-sm">Diploma in Information Technology (288 days)</h4>
+              <p class="text-xs text-zinc-500 mt-0.5">Swanivar Charitable Trust</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-100/70 dark:bg-zinc-900/40 flex flex-wrap items-center justify-between gap-3 text-xs">
+          <span><strong>Languages:</strong> English, Bengali, Hindi</span>
+          <span><strong>Interests:</strong> Exploring New Technologies, Listening to Music, Watching Movies</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 border-t border-zinc-200 dark:border-zinc-800/80 reveal">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        <div class="lg:col-span-5 space-y-5">
+          <span class="text-xs font-semibold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">Get in Touch</span>
+          <h2 class="text-3xl font-bold tracking-tight">Let's Build Something Great</h2>
+          <p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+            Open to AI/ML Engineer and Full Stack Engineer internships, freelance web apps, and collaborative AI Lab projects.
+          </p>
+
+          <div class="space-y-3 pt-2">
+            <div class="flex items-center gap-3 p-3.5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60">
+              <i data-lucide="mail" class="w-5 h-5 text-indigo-500"></i>
+              <div class="min-w-0 flex-1">
+                <div class="text-[11px] text-zinc-500">Email</div>
+                <div id="contactEmailDisplay" class="text-sm font-semibold truncate">skaltamashali970@gmail.com</div>
+              </div>
+              <button id="contactCopyBtn" type="button" class="px-2.5 py-1 rounded-lg text-xs font-medium bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700">Copy</button>
+            </div>
+            <div class="flex items-center gap-3 p-3.5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60">
+              <i data-lucide="phone" class="w-5 h-5 text-emerald-500"></i>
+              <div class="min-w-0 flex-1">
+                <div class="text-[11px] text-zinc-500">Phone</div>
+                <div class="text-sm font-semibold">+91 8609287613</div>
+              </div>
+              <button id="copyPhoneBtn" type="button" class="px-2.5 py-1 rounded-lg text-xs font-medium bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700">Copy</button>
+            </div>
+            <div class="flex items-center gap-3 p-3.5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60">
+              <i data-lucide="map-pin" class="w-5 h-5 text-cyan-500"></i>
+              <div>
+                <div class="text-[11px] text-zinc-500">Location</div>
+                <div id="contactLocationDisplay" class="text-sm font-semibold">Contai, West Bengal 721401, India</div>
+              </div>
+            </div>
+          </div>
+
+          <div id="savedMessagesBox" class="hidden p-4 rounded-2xl border border-emerald-500/30 bg-emerald-500/5 space-y-2">
+            <div class="flex items-center justify-between text-xs font-semibold text-emerald-700 dark:text-emerald-300">
+              <span>Sent Inquiries (Local Session)</span>
+              <span id="sentCountBadge" class="px-2 py-0.5 rounded-full bg-emerald-500/20">0</span>
+            </div>
+            <ul id="sentMessagesList" class="space-y-1.5 text-xs text-zinc-600 dark:text-zinc-400"></ul>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7">
+          <form id="contactForm" class="p-6 sm:p-8 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="senderName" class="block text-xs font-medium mb-1.5">Your Name</label>
+                <input id="senderName" type="text" required placeholder="Recruiter / Client Name" class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+              </div>
+              <div>
+                <label for="senderEmail" class="block text-xs font-medium mb-1.5">Email Address</label>
+                <input id="senderEmail" type="email" required placeholder="you@company.com" class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+              </div>
+            </div>
+
+            <div>
+              <label for="projectType" class="block text-xs font-medium mb-1.5">Inquiry Type</label>
+              <select id="projectType" class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <option value="AI/ML Internship">AI/ML Engineer Internship</option>
+                <option value="Full Stack Internship">Full Stack Engineer Internship</option>
+                <option value="Web Application">Freelance Web Application</option>
+                <option value="UI/UX Design">UI/UX Design Collaboration</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="senderMessage" class="block text-xs font-medium mb-1.5">Message</label>
+              <textarea id="senderMessage" rows="4" required placeholder="Share role details, project scope, or timeline..." class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+            </div>
+
+            <button type="submit" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm shadow-lg shadow-indigo-500/20 transition-all">
+              <i data-lucide="send" class="w-4 h-4"></i>
+              <span>Send Message</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-zinc-200 dark:border-zinc-800/80 py-8 mt-12 text-center text-xs text-zinc-500 dark:text-zinc-400">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <span id="footerCopy">© 2026 Sk Altamash Ali. All rights reserved.</span>
+      <button id="scrollTopBtn" type="button" class="inline-flex items-center gap-1 hover:text-zinc-900 dark:hover:text-white transition-colors">
+        <span>Back to top</span>
+        <i data-lucide="arrow-up" class="w-3.5 h-3.5"></i>
+      </button>
+    </div>
+  </footer>
+
+  <!-- Project Detail Modal -->
+  <div id="projectModal" class="hidden fixed inset-0 z-50 bg-black/60 glass flex items-center justify-center p-4">
+    <div class="w-full max-w-2xl rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 overflow-hidden shadow-2xl max-h-[90vh] flex flex-col">
+      <div id="modalImageWrap" class="h-56 sm:h-64 w-full bg-zinc-900 overflow-hidden relative">
+        <img id="modalImg" src="" alt="Project Preview" class="w-full h-full object-cover" />
+        <button id="closeProjectModal" type="button" aria-label="Close modal" class="absolute top-4 right-4 p-2 rounded-full bg-black/50 text-white hover:bg-black/75">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+      <div class="p-6 overflow-y-auto space-y-4">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <span id="modalCategory" class="text-xs font-semibold text-indigo-600 dark:text-indigo-400"></span>
+            <h3 id="modalTitle" class="text-2xl font-bold mt-0.5"></h3>
+          </div>
+          <div class="flex items-center gap-2">
+            <a id="modalLiveLink" href="#" target="_blank" rel="noopener noreferrer" class="hidden inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-indigo-600 text-white text-xs font-semibold hover:bg-indigo-500">
+              <span>Live Demo</span>
+              <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+            </a>
+            <button id="modalLikeBtn" type="button" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-zinc-200 dark:border-zinc-700 text-xs font-semibold hover:border-rose-500 transition-colors">
+              <i data-lucide="heart" class="w-4 h-4 text-rose-500"></i>
+              <span id="modalLikeCount">0</span>
+            </button>
+          </div>
+        </div>
+        <p id="modalDesc" class="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed"></p>
+        <div>
+          <h4 class="text-xs font-semibold uppercase tracking-wider text-zinc-500 mb-2">Key Highlights</h4>
+          <ul id="modalHighlights" class="space-y-1.5 text-sm text-zinc-700 dark:text-zinc-300 list-disc pl-5"></ul>
+        </div>
+        <div id="modalTags" class="flex flex-wrap gap-2 pt-2"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Project Modal -->
+  <div id="addProjectModal" class="hidden fixed inset-0 z-50 bg-black/60 glass flex items-center justify-center p-4">
+    <div class="w-full max-w-lg rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between">
+        <h3 class="text-lg font-bold">Add New Project</h3>
+        <button id="closeAddProjectModal" type="button" class="p-1.5 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+      <form id="addProjectForm" class="space-y-3">
+        <div>
+          <label for="newProjTitle" class="block text-xs font-medium mb-1">Project Title</label>
+          <input id="newProjTitle" type="text" required placeholder="e.g., Smart Resume Screener" class="w-full px-3 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 text-sm" />
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label for="newProjCat" class="block text-xs font-medium mb-1">Category</label>
+            <select id="newProjCat" class="w-full px-3 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 text-sm">
+              <option value="AI & Data">AI &amp; Data</option>
+              <option value="Web Apps">Web Apps</option>
+              <option value="UI/UX Design">UI/UX Design</option>
+            </select>
+          </div>
+          <div>
+            <label for="newProjTags" class="block text-xs font-medium mb-1">Tech Tags (comma-separated)</label>
+            <input id="newProjTags" type="text" required placeholder="Python, Django, Scikit-learn" class="w-full px-3 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 text-sm" />
+          </div>
+        </div>
+        <div>
+          <label for="newProjUrl" class="block text-xs font-medium mb-1">Live URL (optional)</label>
+          <input id="newProjUrl" type="url" placeholder="https://..." class="w-full px-3 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 text-sm" />
+        </div>
+        <div>
+          <label for="newProjDesc" class="block text-xs font-medium mb-1">Description</label>
+          <textarea id="newProjDesc" rows="3" required placeholder="Briefly describe what it does and its impact..." class="w-full px-3 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 text-sm"></textarea>
+        </div>
+        <div class="flex justify-end gap-2 pt-2">
+          <button id="cancelAddProject" type="button" class="px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 text-xs font-semibold">Cancel</button>
+          <button type="submit" class="px-4 py-2 rounded-xl bg-indigo-600 text-white text-xs font-semibold">Publish Project</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Interactive Resume Modal -->
+  <div id="resumeModal" class="hidden fixed inset-0 z-50 bg-black/60 glass flex items-center justify-center p-4">
+    <div class="w-full max-w-2xl rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto space-y-5">
+      <div class="flex items-center justify-between border-b border-zinc-200 dark:border-zinc-800 pb-4">
+        <div>
+          <h3 id="resumeName" class="text-2xl font-bold">Sk Altamash Ali</h3>
+          <p id="resumeRole" class="text-sm text-indigo-600 dark:text-indigo-400 font-medium">AI/ML Intern | Full Stack Developer | UI Designer</p>
+          <p id="resumeMeta" class="text-xs text-zinc-500 mt-1">Contai, West Bengal 721401, India • +91 8609287613 • skaltamashali970@gmail.com</p>
+        </div>
+        <button id="closeResumeModal" type="button" class="p-2 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-800">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+      <div class="space-y-4 text-sm">
+        <div>
+          <h4 class="font-bold text-xs uppercase tracking-wider text-zinc-500 mb-1.5">Professional Summary</h4>
+          <p id="resumeBio" class="text-zinc-700 dark:text-zinc-300 leading-relaxed"></p>
+        </div>
+        <div>
+          <h4 class="font-bold text-xs uppercase tracking-wider text-zinc-500 mb-1.5">Education</h4>
+          <ul class="space-y-1 text-xs text-zinc-700 dark:text-zinc-300">
+            <li><strong>BCA</strong> — The Neotia University, Sarisha (Aug 2023 – Present)</li>
+            <li><strong>Class XII (WBCHSE)</strong> — Kishore Nagar Sachindra Siksha Sadan, Contai (2023, 74.00%)</li>
+            <li><strong>Class X (WBBSE)</strong> — Kishore Nagar Sachindra Siksha Sadan, Contai (2021, 76.43%)</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-xs uppercase tracking-wider text-zinc-500 mb-1.5">Technical Skills</h4>
+          <p class="text-zinc-700 dark:text-zinc-300 text-xs">Python, Scikit-learn, Pandas, NumPy, Power BI, Django, REST APIs, HTML5, CSS3, JavaScript, Bootstrap 5, Chart.js, Streamlit, SQLite, Git, GitHub, AWS Fundamentals, Vercel</p>
+        </div>
+      </div>
+      <div class="flex justify-end gap-2 pt-3 border-t border-zinc-200 dark:border-zinc-800">
+        <button id="downloadResumeBtn" type="button" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-indigo-600 text-white text-xs font-semibold hover:bg-indigo-500">
+          <i data-lucide="download" class="w-4 h-4"></i>
+          <span>Download .TXT Resume</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Customize Profile Drawer -->
+  <div id="customizeDrawer" class="hidden fixed inset-0 z-50 bg-black/50 glass flex justify-end">
+    <div class="w-full max-w-sm bg-white dark:bg-zinc-900 border-l border-zinc-200 dark:border-zinc-800 h-full p-6 overflow-y-auto space-y-5 shadow-2xl">
+      <div class="flex items-center justify-between">
+        <h3 class="font-bold text-lg">Customize Portfolio</h3>
+        <button id="closeCustomize" type="button" class="p-1.5 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+      <p class="text-xs text-zinc-500 dark:text-zinc-400">Changes update the page live and save to your browser.</p>
+      <div class="space-y-3 text-xs">
+        <div>
+          <label for="editName" class="block font-medium mb-1">Display Name</label>
+          <input id="editName" type="text" class="w-full px-3 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950" />
+        </div>
+        <div>
+          <label for="editRole" class="block font-medium mb-1">Headline / Role</label>
+          <input id="editRole" type="text" class="w-full px-3 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950" />
+        </div>
+        <div>
+          <label for="editAvailability" class="block font-medium mb-1">Availability Badge</label>
+          <input id="editAvailability" type="text" class="w-full px-3 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950" />
+        </div>
+        <div>
+          <label for="editBio" class="block font-medium mb-1">Bio</label>
+          <textarea id="editBio" rows="4" class="w-full px-3 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950"></textarea>
+        </div>
+        <div>
+          <label for="editEmail" class="block font-medium mb-1">Contact Email</label>
+          <input id="editEmail" type="email" class="w-full px-3 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950" />
+        </div>
+      </div>
+      <div class="flex gap-2 pt-2">
+        <button id="saveCustomBtn" type="button" class="flex-1 py-2.5 rounded-xl bg-indigo-600 text-white text-xs font-semibold hover:bg-indigo-500">Save Changes</button>
+        <button id="resetCustomBtn" type="button" class="px-4 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 text-xs font-semibold">Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Command Palette Modal -->
+  <div id="cmdModal" class="hidden fixed inset-0 z-50 bg-black/60 glass flex items-start justify-center pt-24 p-4">
+    <div class="w-full max-w-md rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-2xl overflow-hidden">
+      <div class="flex items-center gap-2 px-4 py-3 border-b border-zinc-200 dark:border-zinc-800">
+        <i data-lucide="search" class="w-4 h-4 text-zinc-400"></i>
+        <input id="cmdInput" type="text" placeholder="Type a command (e.g., projects, theme, resume)..." class="w-full bg-transparent text-sm focus:outline-none" />
+        <button id="closeCmdModal" type="button" class="text-xs text-zinc-400 hover:text-zinc-600">ESC</button>
+      </div>
+      <div id="cmdList" class="p-2 max-h-64 overflow-y-auto space-y-1 text-sm"></div>
+    </div>
+  </div>
+
+  <!-- Certificate Preview Modal -->
+  <div id="certificateModal" class="hidden fixed inset-0 z-[60] bg-black/85 backdrop-blur-sm p-4 sm:p-8" role="dialog" aria-modal="true" aria-labelledby="certificateModalTitle">
+    <button id="closeCertificateModal" type="button" aria-label="Close certificate preview" class="absolute top-4 right-4 z-10 p-2.5 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors">
+      <i data-lucide="x" class="w-5 h-5"></i>
+    </button>
+    <div class="h-full flex flex-col items-center justify-center gap-4">
+      <h3 id="certificateModalTitle" class="text-white text-sm sm:text-base font-semibold text-center"></h3>
+      <img id="certificateModalImage" src="" alt="" class="max-w-full max-h-[82vh] rounded-xl shadow-2xl object-contain bg-white" />
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-5 right-5 z-50 hidden items-center gap-2 px-4 py-3 rounded-xl bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 text-xs font-semibold shadow-xl">
+    <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400 dark:text-emerald-600"></i>
+    <span id="toastText">Copied to clipboard</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
